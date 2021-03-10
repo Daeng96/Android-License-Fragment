@@ -44,7 +44,7 @@ public abstract class LicenseFragmentBase extends Fragment {
 
     protected boolean mLicenseChain;
 
-    private ArrayList<Integer> mLicenses;
+    private final ArrayList<Integer> mLicenses;
     private ArrayList<License> mCustomLicenses;
 
     private int mLicenseIDFlags;
@@ -206,7 +206,7 @@ public abstract class LicenseFragmentBase extends Fragment {
     }
 
     private void addLicensesFromFlag() {
-        if (mLicenseIDFlags == 0) return;;
+        if (mLicenseIDFlags == 0) return;
 
         int[] licenseIDs = {
                 /* ----- This Library ----- */

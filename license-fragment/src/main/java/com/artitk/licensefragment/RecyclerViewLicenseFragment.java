@@ -2,18 +2,21 @@ package com.artitk.licensefragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.artitk.licensefragment.model.License;
 import com.artitk.licensefragment.model.LicenseID;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -103,13 +106,14 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
 
     @Override
     protected void onSaveState(Bundle outState) {
-        outState.putStringArrayList("license_title", ((RecyclerViewAdapter) recyclerView.getAdapter()).getTitleList());
+        outState.putStringArrayList("license_title", ((RecyclerViewAdapter) Objects.requireNonNull(recyclerView.getAdapter())).getTitleList());
         outState.putStringArrayList("license_text", ((RecyclerViewAdapter) recyclerView.getAdapter()).getLicenseList());
     }
 
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-        private ArrayList<String> titleList, licenseList;
+        private final ArrayList<String> titleList;
+        private final ArrayList<String> licenseList;
 
         public RecyclerViewAdapter(ArrayList<String> titleList, ArrayList<String> licenseList) {
             this.titleList   = titleList;
@@ -124,6 +128,7 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
             return licenseList;
         }
 
+        @NonNull
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_license, parent, false);
