@@ -1,19 +1,22 @@
 package com.artitk.licensefragment.example;
 
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.app.FragmentManager;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.artitk.licensefragment.LicenseFragmentBase;
+
 import com.artitk.licensefragment.ListViewLicenseFragment;
 import com.artitk.licensefragment.RecyclerViewLicenseFragment;
 import com.artitk.licensefragment.ScrollViewLicenseFragment;
@@ -44,13 +47,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 fragmentManager.findFragmentById(R.id.navigation_drawer);
         if (savedInstanceState == null) mTitle = getTitle();
 
         // Set up the drawer.
+        assert mNavigationDrawerFragment != null;
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 //        if (true) return;
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment;
 
         ArrayList<Integer> licenseIds = new ArrayList<>();

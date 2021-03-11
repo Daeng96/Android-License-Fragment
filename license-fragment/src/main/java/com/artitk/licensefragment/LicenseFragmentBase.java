@@ -1,13 +1,13 @@
 package com.artitk.licensefragment;
 
-import android.app.Activity;
+
+import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.app.Fragment;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 
 import com.artitk.licensefragment.model.CustomUI;
 import com.artitk.licensefragment.model.LicenseID;
@@ -16,7 +16,11 @@ import com.artitk.licensefragment.model.License;
 import com.artitk.licensefragment.utils.ArrayManager;
 import com.artitk.licensefragment.utils.BitwiseManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
+
 
 /**
  * Activities that contain this fragment can implement the
@@ -76,24 +80,24 @@ public abstract class LicenseFragmentBase extends Fragment {
     }
 
     @Override
-    public void onInflate(Activity activity, AttributeSet attrs, Bundle savedInstanceState) {
-        super.onInflate(activity, attrs, savedInstanceState);
+    public void onInflate(@NonNull Context context, @NonNull AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(context, attrs, savedInstanceState);
 
         useFromFragmentTag = true;
 
         if (DEBUG) {
             Log.d(TAG, "onInflate(Activity, AttributeSet, Bundle)");
-            Log.d(TAG, ">>>> Activity        = " + activity.getClass().getSimpleName());
+            Log.d(TAG, ">>>> Activity        = " + context.getClass().getSimpleName());
             Log.d(TAG, ">>>> AttributeSet    = " + attrs);
             Log.d(TAG, ">>>> Bundle not null = " + (savedInstanceState != null));
         }
 
-        TypedArray typedArray = activity.obtainStyledAttributes(attrs, R.styleable.LicenseFragment);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LicenseFragment);
 
         mLicenseIDFlags = typedArray.getInt(R.styleable.LicenseFragment_lfLicenseID, 0);
         mLicenseChain   = typedArray.getBoolean(R.styleable.LicenseFragment_lfLicenseChain, true);
 
-        Resources resources = activity.getResources();
+        Resources resources = context.getResources();
 
         customUI.setTitleBackgroundColor(typedArray.getColor(R.styleable.LicenseFragment_lfTitleBackgroundColor,
                 resources.getColor(R.color.license_fragment_background)));
@@ -108,17 +112,17 @@ public abstract class LicenseFragmentBase extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
         if (DEBUG) {
             Log.d(TAG, "onAttach(Activity)");
-            Log.d(TAG, ">>>> Activity = " + activity.getClass().getSimpleName());
+            Log.d(TAG, ">>>> Activity = " + context.getClass().getSimpleName());
             Log.d(TAG, "useFromFragmentTag = " + useFromFragmentTag);
         }
 
         if (!useFromFragmentTag) {
-            Resources resources = activity.getResources();
+            Resources resources = context.getResources();
 
             customUI.setTitleBackgroundColor(resources.getColor(R.color.license_fragment_background));
             customUI.setTitleTextColor(resources.getColor(R.color.license_fragment_text_color));
@@ -127,7 +131,7 @@ public abstract class LicenseFragmentBase extends Fragment {
         }
 
         try {
-            mOnAttachedListener = (OnAttachedListener) activity;
+            mOnAttachedListener = (OnAttachedListener) context;
             mOnAttachedListener.onAttached();
         } catch (ClassCastException e) {
             if (isLog) e.printStackTrace();
@@ -135,8 +139,8 @@ public abstract class LicenseFragmentBase extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         if (DEBUG) {
             Log.d(TAG, "onActivityCreated(Bundle)");
@@ -197,7 +201,7 @@ public abstract class LicenseFragmentBase extends Fragment {
 
         addLicensesFromFlag();
 
-        LicenseManager licenseManager = new LicenseManager(getActivity().getApplicationContext());
+        LicenseManager licenseManager = new LicenseManager(requireActivity().getApplicationContext());
         ArrayList<License> licenses = licenseManager.withLicenseChain(mLicenseChain).getLicenses(mLicenses);
         if (mCustomLicenses != null) licenses.addAll(mCustomLicenses);
 

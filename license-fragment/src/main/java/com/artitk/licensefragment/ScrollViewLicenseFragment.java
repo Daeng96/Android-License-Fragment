@@ -1,6 +1,5 @@
 package com.artitk.licensefragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.artitk.licensefragment.model.License;
 import com.artitk.licensefragment.model.LicenseID;
@@ -59,7 +61,7 @@ public class ScrollViewLicenseFragment extends LicenseFragmentBase {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (DEBUG) {
             Log.d(TAG, "onCreateView(LayoutInflater, ViewGroup, Bundle)");
@@ -70,8 +72,8 @@ public class ScrollViewLicenseFragment extends LicenseFragmentBase {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_scroll_view_license, container, false);
 
-        scrollView = (ScrollView) rootView.findViewById(R.id.scrollView);
-        tvLicense = (TextView) rootView.findViewById(R.id.tvLicense);
+        scrollView = rootView.findViewById(R.id.scrollView);
+        tvLicense = rootView.findViewById(R.id.tvLicense);
 
         return rootView;
     }

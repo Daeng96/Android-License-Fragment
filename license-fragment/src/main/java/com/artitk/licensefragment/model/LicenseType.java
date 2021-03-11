@@ -12,6 +12,6 @@ public enum LicenseType {
     GPL_30,
     MIT_LICENSE,
     EPL_10,
-    // TODO : Add new license type here
+
     CUSTOM_LICENSE
 }

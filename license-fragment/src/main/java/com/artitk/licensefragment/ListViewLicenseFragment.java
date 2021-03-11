@@ -1,5 +1,6 @@
 package com.artitk.licensefragment;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.artitk.licensefragment.model.License;
 import com.artitk.licensefragment.model.LicenseID;
@@ -59,7 +62,7 @@ public class ListViewLicenseFragment extends LicenseFragmentBase {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (DEBUG) {
             Log.d(TAG, "onCreateView(LayoutInflater, ViewGroup, Bundle)");
@@ -70,7 +73,7 @@ public class ListViewLicenseFragment extends LicenseFragmentBase {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_list_view_license, container, false);
 
-        listView = (ListView) rootView.findViewById(R.id.listView);
+        listView = rootView.findViewById(R.id.listView);
 
         return rootView;
     }
@@ -106,7 +109,8 @@ public class ListViewLicenseFragment extends LicenseFragmentBase {
 
     private class ListViewAdapter extends BaseAdapter {
 
-        private ArrayList<String> titleList, licenseList;
+        private final ArrayList<String> titleList;
+        private final ArrayList<String> licenseList;
 
         public ListViewAdapter(ArrayList<String> titleList, ArrayList<String> licenseList) {
             this.titleList = titleList;
@@ -136,6 +140,7 @@ public class ListViewLicenseFragment extends LicenseFragmentBase {
             return 0;
         }
 
+        @SuppressLint("InflateParams")
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             ViewHolder viewHolder;
@@ -159,8 +164,8 @@ public class ListViewLicenseFragment extends LicenseFragmentBase {
             public TextView tvItemTitle, tvItemLicense;
 
             public ViewHolder(View view) {
-                tvItemTitle   = (TextView) view.findViewById(R.id.tvItemTitle);
-                tvItemLicense = (TextView) view.findViewById(R.id.tvItemLicense);
+                tvItemTitle   = view.findViewById(R.id.tvItemTitle);
+                tvItemLicense = view.findViewById(R.id.tvItemLicense);
 
                 tvItemTitle.setTextColor(customUI.getTitleTextColor());
                 tvItemLicense.setBackgroundColor(customUI.getLicenseBackgroundColor());

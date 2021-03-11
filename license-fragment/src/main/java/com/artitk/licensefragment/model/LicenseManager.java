@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
  */
 public class LicenseManager {
 
-    private Context context;
+    private final Context context;
     private boolean mLicenseChain;
 
     public LicenseManager(Context context) {
@@ -36,11 +36,11 @@ public class LicenseManager {
     }
 
     private int[] getLicenseChains(int licenseID) {
-        switch (licenseID) {
-            case LicenseID.RETROFIT:            return new int[] { LicenseID.OKHTTP };
+        if (licenseID == LicenseID.RETROFIT) {
+            return new int[]{LicenseID.OKHTTP};
             // TODO : Add reference license here
-            default:                            return new int[] { };
         }
+        return new int[]{};
     }
 
     private class LicenseHashMap extends LinkedHashMap<Integer, License> {
