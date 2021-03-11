@@ -219,7 +219,9 @@ public abstract class LicenseFragmentBase extends Fragment {
                 LicenseID.RETROFIT,
                 LicenseID.PICASSO,
                 /* ----- Other Library ----- */
-                // TODO : Add new license constant here
+                LicenseID.ADHANPREC,
+                LicenseID.AZAN,
+                LicenseID.HERESDK
         };
 
         BitwiseManager bitwiseManager = new BitwiseManager(mLicenseIDFlags);

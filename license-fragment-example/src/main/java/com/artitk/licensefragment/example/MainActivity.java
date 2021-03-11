@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity
         ArrayList<Integer> licenseIds = new ArrayList<>();
         licenseIds.add(LicenseID.GSON);
         licenseIds.add(LicenseID.RETROFIT);
+        licenseIds.add(LicenseID.ADHANPREC);
+        licenseIds.add(LicenseID.AZAN);
+        licenseIds.add(LicenseID.HERESDK);
 
         switch (position) {
             case 0:

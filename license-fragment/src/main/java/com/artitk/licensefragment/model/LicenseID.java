@@ -20,6 +20,8 @@ public final class LicenseID {
 
     /* ----- Other Library ----- */
 //    public static final int OTHER_LIB           = 0x01000000;
-
+    public static final int AZAN                 = 0x00100000;
+    public static final int ADHANPREC            = 0x00200000;
+    public static final int HERESDK              = 0x00300000;
     // TODO : Add new constant here and update attrs.xml
 }

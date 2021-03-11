@@ -73,7 +73,7 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_recycler_view_license, container, false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
 //        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration(){ });
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -153,8 +153,8 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
             public ViewHolder(View itemView) {
                 super(itemView);
 
-                tvItemTitle   = (TextView) itemView.findViewById(R.id.tvItemTitle);
-                tvItemLicense = (TextView) itemView.findViewById(R.id.tvItemLicense);
+                tvItemTitle   = itemView.findViewById(R.id.tvItemTitle);
+                tvItemLicense = itemView.findViewById(R.id.tvItemLicense);
 
                 tvItemTitle.setTextColor(customUI.getTitleTextColor());
                 tvItemLicense.setBackgroundColor(customUI.getLicenseBackgroundColor());
