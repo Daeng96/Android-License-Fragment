@@ -1,5 +1,6 @@
 package com.artitk.licensefragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.artitk.licensefragment.model.CustomUI;
 import com.artitk.licensefragment.model.License;
 import com.artitk.licensefragment.model.LicenseID;
 
@@ -91,6 +93,7 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
             licenseList.add(license.getLicense());
         }
 
+        recyclerView.setBackground(customUI.getBackgroundLicense());
         recyclerView.setBackgroundColor(customUI.getTitleBackgroundColor());
         recyclerView.setAdapter(new RecyclerViewAdapter(titleList, licenseList));
     }

@@ -1,5 +1,7 @@
 package com.artitk.licensefragment.model;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Custom UI data class.
  */
@@ -9,6 +11,7 @@ public class CustomUI {
     private int titleTextColor;
     private int licenseBackgroundColor;
     private int licenseTextColor;
+    private Drawable backgroundLicense;
 
     public int getTitleBackgroundColor() {
         return titleBackgroundColor;
@@ -43,6 +46,13 @@ public class CustomUI {
 
     public CustomUI setLicenseTextColor(int licenseTextColor) {
         this.licenseTextColor = licenseTextColor;
+        return this;
+    }
+
+    public Drawable getBackgroundLicense() {return backgroundLicense;}
+
+    public CustomUI setBackgroundLicense(Drawable  drawable){
+        this.backgroundLicense = drawable;
         return this;
     }
 
