@@ -109,11 +109,11 @@ public abstract class LicenseFragmentBase extends Fragment {
         );
         customUI.setTitleTextColor(typedArray.getColor(R.styleable.LicenseFragment_lfTitleTextColor,
                 resources.getColor(R.color.license_fragment_text_color)));
-        /*customUI.setLicenseBackgroundColor(typedArray.getColor(R.styleable.LicenseFragment_lfLicenseBackgroundColor,
-                resources.getColor(R.color.license_fragment_background_item)));*/
+        customUI.setLicenseBackgroundColor(typedArray.getColor(R.styleable.LicenseFragment_lfLicenseBackgroundColor,
+                resources.getColor(R.color.license_fragment_background_item)));
         customUI.setLicenseTextColor(typedArray.getColor(R.styleable.LicenseFragment_lfLicenseTextColor,
                 resources.getColor(R.color.license_fragment_text_color_item)));
-        customUI.setBackgroundLicense(typedArray.getInt(R.styleable.LicenseFragment_lfbackgroundLicense, R.drawable.bg_license));
+       // customUI.setBackgroundLicense(typedArray.getInt(R.styleable.LicenseFragment_lfbackgroundLicense, R.drawable.bg_license));
 
         typedArray.recycle();
     }
@@ -133,9 +133,9 @@ public abstract class LicenseFragmentBase extends Fragment {
 
             customUI.setTitleBackgroundColor(resources.getColor(R.color.license_fragment_background));
             customUI.setTitleTextColor(resources.getColor(R.color.license_fragment_text_color));
-            //customUI.setLicenseBackgroundColor(resources.getColor(R.color.license_fragment_background_item));
+            customUI.setLicenseBackgroundColor(resources.getColor(R.color.license_fragment_background_item));
             customUI.setLicenseTextColor(resources.getColor(R.color.license_fragment_text_color_item));
-            customUI.setBackgroundLicense(R.drawable.bg_license);
+            //customUI.setBackgroundLicense(resources.getDrawable(R.drawable.bg_license));
         }
 
         try {
@@ -159,8 +159,8 @@ public abstract class LicenseFragmentBase extends Fragment {
             if (mCustomUI != null) {
                 if (mCustomUI.getTitleBackgroundColor() != 0)   customUI.setTitleBackgroundColor(mCustomUI.getTitleBackgroundColor());
                 if (mCustomUI.getTitleTextColor() != 0)         customUI.setTitleTextColor(mCustomUI.getTitleTextColor());
-                if (mCustomUI.getBackgroundLicense() != 0) customUI.setBackgroundLicense(mCustomUI.getBackgroundLicense());
-                /*if (mCustomUI.getLicenseBackgroundColor() != 0) customUI.setLicenseBackgroundColor(mCustomUI.getLicenseBackgroundColor());*/
+              //  if (mCustomUI.getBackgroundLicense() != 0) customUI.setBackgroundLicense(mCustomUI.getBackgroundLicense());
+                if (mCustomUI.getLicenseBackgroundColor() != 0) customUI.setLicenseBackgroundColor(mCustomUI.getLicenseBackgroundColor());
                 if (mCustomUI.getLicenseTextColor() != 0)       customUI.setLicenseTextColor(mCustomUI.getLicenseTextColor());
             }
 
@@ -194,7 +194,7 @@ public abstract class LicenseFragmentBase extends Fragment {
 
         outState.putIntArray("custom_ui", new int[] {
                 customUI.getTitleBackgroundColor(),
-                customUI.getBackgroundLicense(),
+                customUI.getLicenseBackgroundColor(),
                 customUI.getTitleTextColor(),
                 customUI.getLicenseTextColor()
         });

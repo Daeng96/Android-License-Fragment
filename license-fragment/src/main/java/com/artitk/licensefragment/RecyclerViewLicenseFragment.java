@@ -160,7 +160,6 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
                 tvItemLicense = itemView.findViewById(R.id.tvItemLicense);
 
                 tvItemTitle.setTextColor(customUI.getTitleTextColor());
-                tvItemLicense.setBackground(getResources().getDrawable(customUI.getBackgroundLicense()));
                 tvItemLicense.setTextColor(customUI.getLicenseTextColor());
             }
 
