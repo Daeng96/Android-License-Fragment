@@ -2,15 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin">
 
     <TextView
         android:id="@+id/tvItemTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/license_fragment_library"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/license_fragment_text_color" />
@@ -19,11 +17,10 @@
         android:id="@+id/tvItemLicense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/license_fragment_background_item"
+        android:paddingEnd="@dimen/activity_vertical_margin"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:textColor="@color/license_fragment_text_color_item"
         android:padding="@dimen/activity_vertical_margin"
         android:text="@string/license_fragment_library" />

@@ -5,4 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/license_fragment_background"
+    tools:listitem="@layout/layout_item_license"
     tools:context="com.artitk.licensefragment.RecyclerViewLicenseFragment" />

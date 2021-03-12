@@ -168,7 +168,7 @@ public class ListViewLicenseFragment extends LicenseFragmentBase {
                 tvItemLicense = view.findViewById(R.id.tvItemLicense);
 
                 tvItemTitle.setTextColor(customUI.getTitleTextColor());
-                tvItemLicense.setBackgroundColor(customUI.getLicenseBackgroundColor());
+//                tvItemLicense.setBackgroundColor(getResources().getDrawable(customUI.getBackgroundLicense()));
                 tvItemLicense.setTextColor(customUI.getLicenseTextColor());
             }
 

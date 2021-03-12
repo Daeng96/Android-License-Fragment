@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -100,16 +101,19 @@ public class MainActivity extends AppCompatActivity
 
         switch (position) {
             case 0:
-                if (fragmentManager.findFragmentById(R.id.container) instanceof ScrollViewLicenseFragment) return;
+                if (fragmentManager.findFragmentById(R.id.container) instanceof ScrollViewLicenseFragment)
+                    return;
                 fragment = ScrollViewLicenseFragment.newInstance(licenseIds);   // Call newInstance() using parameter ArrayList<Integer>
                 break;
             case 1:
-                if (fragmentManager.findFragmentById(R.id.container) instanceof ListViewLicenseFragment) return;
+                if (fragmentManager.findFragmentById(R.id.container) instanceof ListViewLicenseFragment)
+                    return;
                 fragment = ListViewLicenseFragment.newInstance(new int[]{LicenseID.PICASSO}) // Call newInstance() using parameter array
                         .withLicenseChain(false);                                               // Disable license chain
                 break;
             case 2:
-                if (fragmentManager.findFragmentById(R.id.container) instanceof RecyclerViewLicenseFragment) return;
+                if (fragmentManager.findFragmentById(R.id.container) instanceof RecyclerViewLicenseFragment)
+                    return;
                 ArrayList<License> licenses = new ArrayList<>();
                 licenses.add(new License(this, "Test Library 1", LicenseType.MIT_LICENSE, "2000-2001", "Test Owner 1"));
                 licenses.add(new License(this, "Test Library 2", LicenseType.GPL_30, "2002", "Test Owner 2"));
@@ -119,13 +123,13 @@ public class MainActivity extends AppCompatActivity
                 fragment = RecyclerViewLicenseFragment.newInstance()    // Call newInstance() using without parameter
                         .setLog(true)                                   // Enable Log
                         .withLicenseChain(true)                         // Enable license chain (default)
-                        .addLicense(new int[] { LicenseID.PICASSO })    // Add array (same call newInstance)
+                        .addLicense(new int[]{LicenseID.PICASSO})    // Add array (same call newInstance)
                         .addLicense(licenseIds)                         // Add ArrayList<Integer> (same call newInstance)
-                        .addCustomLicense(licenses)                     // Add Custom License
+                        .addCustomLicense(licenses)             // Add Custom License
                         .setCustomUI(new CustomUI()                     // Set Custom UI
+                                .setBackgroundLicense(R.drawable.bg_rv)
                                 .setTitleBackgroundColor(Color.parseColor("#7fff7f"))
                                 .setTitleTextColor(getResources().getColor(android.R.color.holo_green_dark))
-                                .setLicenseBackgroundColor(Color.rgb(127, 223, 127))
                                 .setLicenseTextColor(Color.DKGRAY));
                 break;
             default:
@@ -145,9 +149,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onAttached() {
         switch (fragmentId) {
-            case 1: mTitle = getString(R.string.title_section1); break;
-            case 2: mTitle = getString(R.string.title_section2); break;
-            case 3: mTitle = getString(R.string.title_section3); break;
+            case 1:
+                mTitle = getString(R.string.title_section1);
+                break;
+            case 2:
+                mTitle = getString(R.string.title_section2);
+                break;
+            case 3:
+                mTitle = getString(R.string.title_section3);
+                break;
         }
     }
 

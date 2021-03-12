@@ -1,5 +1,8 @@
 package com.artitk.licensefragment;
 
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -93,8 +96,6 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
             licenseList.add(license.getLicense());
         }
 
-        recyclerView.setBackground(customUI.getBackgroundLicense());
-        recyclerView.setBackgroundColor(customUI.getTitleBackgroundColor());
         recyclerView.setAdapter(new RecyclerViewAdapter(titleList, licenseList));
     }
 
@@ -103,7 +104,6 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
         ArrayList<String> titleList   = savedInstanceState.getStringArrayList("license_title");
         ArrayList<String> licenseList = savedInstanceState.getStringArrayList("license_text");
 
-        recyclerView.setBackgroundColor(customUI.getTitleBackgroundColor());
         recyclerView.setAdapter(new RecyclerViewAdapter(titleList, licenseList));
     }
 
@@ -160,7 +160,7 @@ public class RecyclerViewLicenseFragment extends LicenseFragmentBase {
                 tvItemLicense = itemView.findViewById(R.id.tvItemLicense);
 
                 tvItemTitle.setTextColor(customUI.getTitleTextColor());
-                tvItemLicense.setBackgroundColor(customUI.getLicenseBackgroundColor());
+                tvItemLicense.setBackground(getResources().getDrawable(customUI.getBackgroundLicense()));
                 tvItemLicense.setTextColor(customUI.getLicenseTextColor());
             }
 

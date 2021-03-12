@@ -1,5 +1,6 @@
 package com.artitk.licensefragment.model;
 
+
 import android.graphics.drawable.Drawable;
 
 /**
@@ -9,9 +10,9 @@ public class CustomUI {
 
     private int titleBackgroundColor;
     private int titleTextColor;
-    private int licenseBackgroundColor;
+//    private int licenseBackgroundColor;
     private int licenseTextColor;
-    private Drawable backgroundLicense;
+    private int backgroundLicense;
 
     public int getTitleBackgroundColor() {
         return titleBackgroundColor;
@@ -31,14 +32,14 @@ public class CustomUI {
         return this;
     }
 
-    public int getLicenseBackgroundColor() {
+    /*public int getLicenseBackgroundColor() {
         return licenseBackgroundColor;
     }
 
     public CustomUI setLicenseBackgroundColor(int licenseBackgroundColor) {
         this.licenseBackgroundColor = licenseBackgroundColor;
         return this;
-    }
+    }*/
 
     public int getLicenseTextColor() {
         return licenseTextColor;
@@ -49,9 +50,11 @@ public class CustomUI {
         return this;
     }
 
-    public Drawable getBackgroundLicense() {return backgroundLicense;}
+    public int getBackgroundLicense() {
+        return backgroundLicense;
+    }
 
-    public CustomUI setBackgroundLicense(Drawable  drawable){
+    public CustomUI setBackgroundLicense(int drawable) {
         this.backgroundLicense = drawable;
         return this;
     }

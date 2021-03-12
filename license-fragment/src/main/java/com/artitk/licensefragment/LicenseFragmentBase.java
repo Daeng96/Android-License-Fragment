@@ -4,6 +4,9 @@ package com.artitk.licensefragment;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.artitk.licensefragment.utils.BitwiseManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 
@@ -98,15 +102,18 @@ public abstract class LicenseFragmentBase extends Fragment {
         mLicenseChain   = typedArray.getBoolean(R.styleable.LicenseFragment_lfLicenseChain, true);
 
         Resources resources = context.getResources();
-
-        customUI.setTitleBackgroundColor(typedArray.getColor(R.styleable.LicenseFragment_lfTitleBackgroundColor,
-                resources.getColor(R.color.license_fragment_background)));
+        //Drawable drawable = typedArray.getDrawable(R.styleable.LicenseFragment_lfbackgroundLicense);
+        customUI.setTitleBackgroundColor(
+                typedArray.getColor(R.styleable.LicenseFragment_lfTitleBackgroundColor,
+                resources.getColor(R.color.license_fragment_background))
+        );
         customUI.setTitleTextColor(typedArray.getColor(R.styleable.LicenseFragment_lfTitleTextColor,
                 resources.getColor(R.color.license_fragment_text_color)));
-        customUI.setLicenseBackgroundColor(typedArray.getColor(R.styleable.LicenseFragment_lfLicenseBackgroundColor,
-                resources.getColor(R.color.license_fragment_background_item)));
+        /*customUI.setLicenseBackgroundColor(typedArray.getColor(R.styleable.LicenseFragment_lfLicenseBackgroundColor,
+                resources.getColor(R.color.license_fragment_background_item)));*/
         customUI.setLicenseTextColor(typedArray.getColor(R.styleable.LicenseFragment_lfLicenseTextColor,
                 resources.getColor(R.color.license_fragment_text_color_item)));
+        customUI.setBackgroundLicense(typedArray.getInt(R.styleable.LicenseFragment_lfbackgroundLicense, R.drawable.bg_license));
 
         typedArray.recycle();
     }
@@ -126,8 +133,9 @@ public abstract class LicenseFragmentBase extends Fragment {
 
             customUI.setTitleBackgroundColor(resources.getColor(R.color.license_fragment_background));
             customUI.setTitleTextColor(resources.getColor(R.color.license_fragment_text_color));
-            customUI.setLicenseBackgroundColor(resources.getColor(R.color.license_fragment_background_item));
+            //customUI.setLicenseBackgroundColor(resources.getColor(R.color.license_fragment_background_item));
             customUI.setLicenseTextColor(resources.getColor(R.color.license_fragment_text_color_item));
+            customUI.setBackgroundLicense(R.drawable.bg_license);
         }
 
         try {
@@ -151,7 +159,8 @@ public abstract class LicenseFragmentBase extends Fragment {
             if (mCustomUI != null) {
                 if (mCustomUI.getTitleBackgroundColor() != 0)   customUI.setTitleBackgroundColor(mCustomUI.getTitleBackgroundColor());
                 if (mCustomUI.getTitleTextColor() != 0)         customUI.setTitleTextColor(mCustomUI.getTitleTextColor());
-                if (mCustomUI.getLicenseBackgroundColor() != 0) customUI.setLicenseBackgroundColor(mCustomUI.getLicenseBackgroundColor());
+                if (mCustomUI.getBackgroundLicense() != 0) customUI.setBackgroundLicense(mCustomUI.getBackgroundLicense());
+                /*if (mCustomUI.getLicenseBackgroundColor() != 0) customUI.setLicenseBackgroundColor(mCustomUI.getLicenseBackgroundColor());*/
                 if (mCustomUI.getLicenseTextColor() != 0)       customUI.setLicenseTextColor(mCustomUI.getLicenseTextColor());
             }
 
@@ -164,7 +173,7 @@ public abstract class LicenseFragmentBase extends Fragment {
             customUI = new CustomUI();
             customUI.setTitleBackgroundColor(intsCustomUI[0]);
             customUI.setTitleTextColor(intsCustomUI[1]);
-            customUI.setLicenseBackgroundColor(intsCustomUI[2]);
+//            customUI.setLicenseBackgroundColor(intsCustomUI[2]);
             customUI.setLicenseTextColor(intsCustomUI[3]);
 
             if (isLog) Log.i(TAG, "Call -> onRestoreState(Bundle)");
@@ -185,8 +194,8 @@ public abstract class LicenseFragmentBase extends Fragment {
 
         outState.putIntArray("custom_ui", new int[] {
                 customUI.getTitleBackgroundColor(),
+                customUI.getBackgroundLicense(),
                 customUI.getTitleTextColor(),
-                customUI.getLicenseBackgroundColor(),
                 customUI.getLicenseTextColor()
         });
 
