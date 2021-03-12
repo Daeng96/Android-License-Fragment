@@ -5,4 +5,5 @@
 /build
 /license-fragment*/build
 /captures
+/license-fragment-example
 *.iml
